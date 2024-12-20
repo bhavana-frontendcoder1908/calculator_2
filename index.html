@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Calculator</title>
+   <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 320px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.result {
+    font-size: 2rem;
+    background-color: #333;
+    color: #fff;
+    text-align: right;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow-x: auto;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 70px;
+    padding: 20px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #ccc;
+}
+
+button:active {
+    background-color: #bbb;
+}
+
+.operator {
+    background-color: #f39c12;
+    color: white;
+}
+
+.operator:hover {
+    background-color: #e67e22;
+}
+
+.operator:active {
+    background-color: #d35400;
+}
+
+.clear {
+    background-color: #e74c3c;
+    color: white;
+    width: 100%;
+}
+
+.clear:hover {
+    background-color: #c0392b;
+}
+
+.clear:active {
+    background-color: #e74c3c;
+}
+
+/* Media Queries for Android OS version 12 and above */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .result {
+        font-size: 1.5rem;
+        padding: 10px;
+        height: 50px;
+    }
+
+    button {
+        width: 60px;
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+}
+
+
+   </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result" id="result"></div>
+        <div class="buttons">
+            <div class="row">
+                <button onclick="validate('7')">7</button>
+                <button onclick="validate('8')">8</button>
+                <button onclick="validate('9')">9</button>
+                <button class="operator" onclick="validate('+')">+</button>
+            </div>
+            <div class="row">
+                <button onclick="validate('4')">4</button>
+                <button onclick="validate('5')">5</button>
+                <button onclick="validate('6')">6</button>
+                <button class="operator" onclick="validate('-')">-</button>
+            </div>
+            <div class="row">
+                <button onclick="validate('1')">1</button>
+                <button onclick="validate('2')">2</button>
+                <button onclick="validate('3')">3</button>
+                <button class="operator" onclick="validate('*')">*</button>
+            </div>
+            <div class="row">
+                <button onclick="validate('0')">0</button>
+                <button onclick="validate('.')">.</button>
+                <button class="operator" onclick="validate('%')">%</button>
+                <button class="operator" onclick="calResult()">=</button>
+            </div>
+            <button class="clear" onclick="vanish()">C</button>
+        </div>
+    </div>
+   <script>
+let result = document.getElementById("result");
+
+function validate(v) {
+    result.innerHTML += v;
+}
+
+function calResult() {
+    try {
+        result.innerHTML = eval(result.innerHTML);
+    } catch (e) {
+        result.innerHTML = "Error";
+    }
+}
+
+function vanish() {
+    result.innerHTML = "";
+}
+
+
+   </script>
+</body>
+</html>
